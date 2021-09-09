@@ -10,11 +10,14 @@ public class Teleop extends TeleLib {
     //TODO: Shriya - Fill with existing methods
     @Override
     public void loop() {
-
+        lift();
+        arcadeDrive();
+        intake();
+        claw();
     }
 
     @Override
     public void stop() {
-
+        killMotors();
     }
 }
