@@ -4,6 +4,9 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.util.ElapsedTime;
+
+import org.firstinspires.ftc.teamcode.ThreadHandler;
 
 public abstract class TeleLib extends OpMode {
 
@@ -16,6 +19,8 @@ public abstract class TeleLib extends OpMode {
     public Servo arm;
     public Servo grabber;
     public Servo hitter;
+
+    public ThreadHandler th_arcade;
 
     @Override
     public void init() {
@@ -49,14 +54,42 @@ public abstract class TeleLib extends OpMode {
         intake.setDirection(DcMotorSimple.Direction.FORWARD);
         lift.setDirection(DcMotorSimple.Direction.FORWARD);
 
-
+        th_arcade = new ThreadHandler();
     }
+
+    Thread half_speed = new Thread(new Runnable() {
+        @Override
+        public void run() {
+            ElapsedTime time = new ElapsedTime();
+            time.reset();
+            while(time.milliseconds() < 300){
+
+            }
+            half = .5;
+            halfToggle = true;
+        }
+    });
+
+    Thread full_speed = new Thread(new Runnable() {
+        @Override
+        public void run() {
+            ElapsedTime time = new ElapsedTime();
+            time.reset();
+            while(time.milliseconds() < 300){
+
+            }
+            half = 1;
+            halfToggle = false;
+        }
+    });
+
+    boolean halfToggle = false;
+    double half = .5;
 
     //TODO: Sophia - Create arcade drive method (GP1: left stick linear, right stick turning)
         //I got most of this from the example so I don't think i did it right
     public void arcadeDrive() {
-        boolean halfToggle = false;
-        double half_speed = .5;
+
 
         double right_stick_x;
         double left_stick_x;
