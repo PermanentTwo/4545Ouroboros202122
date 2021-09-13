@@ -6,8 +6,24 @@ import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.har
 
 public class Intake {
     public DcMotor intake;
+
     public Intake()
     {
         intake = hardwareMap.dcMotor.get("intake");
+    }
+
+    public void intakeForward()
+    {
+        intake.setPower(1);
+    }
+
+    public void intakeBackward()
+    {
+        intake.setPower(-1);
+    }
+
+    public void killIntake()
+    {
+        intake.setPower(0);
     }
 }
