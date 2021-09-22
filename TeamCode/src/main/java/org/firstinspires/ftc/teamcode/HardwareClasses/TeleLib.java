@@ -18,9 +18,7 @@ public abstract class TeleLib extends OpMode {
     public DcMotor intake2;
     public DcMotor lift;
     public DcMotor wheel;
-    public Servo arm;
     public Servo grabber;
-    public Servo hitter;
 
     public ThreadHandler th_arcade;
 
@@ -38,9 +36,7 @@ public abstract class TeleLib extends OpMode {
 
         //TODO: Sophia - Initialize the Servos' hardware maps
 
-        arm = hardwareMap.servo.get("arm");
-        grabber = hardwareMap.servo.get ("grabber");
-        hitter = hardwareMap.servo.get ("hitter");
+        grabber = hardwareMap.servo.get("box");
 
         //Set directions and zero power behavior
         br.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);

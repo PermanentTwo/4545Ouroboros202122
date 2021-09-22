@@ -12,5 +12,7 @@ public class AutoBlue extends LinearOpMode {
 
         Output out = new Output(this);
 
+        out.box(true);
+
     }
 }

@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode.HardwareClasses;
 
+import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.hardwareMap;
+
 import android.provider.SearchRecentSuggestions;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -18,31 +20,29 @@ public class Output {
 
     public Output(LinearOpMode opMode)
     {
-
         this.opMode = opMode;
+        box = hardwareMap.servo.get ("box");
+        lift = hardwareMap.dcMotor.get("lift");
     }
 
     //We need to move the lift up 1200 encoder counts
     public void liftUp(int position) {
 
         if (position == 1) {
-            while (lift.getCurrentPosition() <= 1000 && opMode.opModeIsActive()) {
-                box(true);
-            }
-            box(false);
+
         }
         else if (position == 2) {
-            while (lift.getCurrentPosition() <= 2000 && lift.getCurrentPosition() >1000 && opMode.opModeIsActive()){
-              box(true);
+            while (lift.getCurrentPosition() <= 1000 && opMode.opModeIsActive()){
+              lift.setPower(0.5);
             }
-            box(false);
         }
         else if (position == 3) {
-            while (lift.getCurrentPosition() <= 3000 && lift.getCurrentPosition() >2000 && opMode.opModeIsActive()){
-                box(true);
+            while (lift.getCurrentPosition() <= 2000 && opMode.opModeIsActive()){
+                lift.setPower(0.5);
             }
-            box(false);
         }
+        opMode.sleep(500);
+        box(true);
     }
 
     public void box(boolean push) {
