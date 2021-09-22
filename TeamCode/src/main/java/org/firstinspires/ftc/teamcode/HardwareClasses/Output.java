@@ -11,24 +11,47 @@ public class Output {
     //add lift and claw
 
     public DcMotor lift;
-    public Servo arm;
-    public Servo grabber;
+    public Servo box;
     public LinearOpMode opMode;
 
     ElapsedTime time = new ElapsedTime();
 
     public Output(LinearOpMode opMode)
     {
+
         this.opMode = opMode;
     }
 
     //We need to move the lift up 1200 encoder counts
-    public void liftUp()
-    {
-        while (lift.getCurrentPosition() < 1200 && time.seconds() < 2 && opMode.opModeIsActive())
-        {
-            lift.setPower(.7);
+    public void liftUp(int position) {
+
+        if (position == 1) {
+            while (lift.getCurrentPosition() <= 1000 && opMode.opModeIsActive()) {
+                box(true);
+            }
+            box(false);
         }
-        lift.setPower(0);
+        else if (position == 2) {
+            while (lift.getCurrentPosition() <= 2000 && lift.getCurrentPosition() >1000 && opMode.opModeIsActive()){
+              box(true);
+            }
+            box(false);
+        }
+        else if (position == 3) {
+            while (lift.getCurrentPosition() <= 3000 && lift.getCurrentPosition() >2000 && opMode.opModeIsActive()){
+                box(true);
+            }
+            box(false);
+        }
+    }
+
+    public void box(boolean push) {
+
+        if (push){
+            box.setPosition(1);
+        }
+        else if (!push){
+            box.setPosition(0);
+        }
     }
 }
