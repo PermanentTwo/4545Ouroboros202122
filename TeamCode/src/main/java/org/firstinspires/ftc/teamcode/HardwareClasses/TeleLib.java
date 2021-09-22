@@ -15,6 +15,7 @@ public abstract class TeleLib extends OpMode {
     public DcMotor fl;
     public DcMotor fr;
     public DcMotor intake;
+    public DcMotor intake2;
     public DcMotor lift;
     public Servo arm;
     public Servo grabber;
@@ -30,6 +31,7 @@ public abstract class TeleLib extends OpMode {
         bl = hardwareMap.dcMotor.get("bl");
         fl = hardwareMap.dcMotor.get("fr");
         intake = hardwareMap.dcMotor.get("intake");
+        intake2 = hardwareMap.dcMotor.get("intake2");
         lift = hardwareMap.dcMotor.get("lift");
 
         //TODO: Sophia - Initialize the Servos' hardware maps
@@ -44,6 +46,7 @@ public abstract class TeleLib extends OpMode {
         bl.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         fl.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         intake.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        intake2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         lift.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
 
@@ -52,6 +55,7 @@ public abstract class TeleLib extends OpMode {
         bl.setDirection(DcMotorSimple.Direction.FORWARD);
         fl.setDirection(DcMotorSimple.Direction.FORWARD);
         intake.setDirection(DcMotorSimple.Direction.FORWARD);
+        intake2.setDirection(DcMotorSimple.Direction.FORWARD);
         lift.setDirection(DcMotorSimple.Direction.FORWARD);
 
         th_arcade = new ThreadHandler();
@@ -125,10 +129,13 @@ public abstract class TeleLib extends OpMode {
             boolean left_bumper = gamepad2.left_bumper;
             if (right_bumper) {
                 intake.setPower(1);
+                intake2.setPower(1);
             } else if (left_bumper) {
                 intake.setPower(-1);
+                intake2.setPower(-1);
             } else {
                 intake.setPower(0);
+                intake2.setPower(0);
             }
         }
 
