@@ -13,7 +13,8 @@ public class Teleop extends TeleLib {
         lift();
         arcadeDrive();
         intake();
-        claw();
+        box();
+        wheel();
     }
 
     @Override

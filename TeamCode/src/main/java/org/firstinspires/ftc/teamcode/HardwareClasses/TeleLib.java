@@ -16,6 +16,7 @@ public abstract class TeleLib extends OpMode {
     public DcMotor fr;
     public DcMotor intake;
     public DcMotor lift;
+    public DcMotor wheel;
     public Servo arm;
     public Servo grabber;
     public Servo hitter;
@@ -31,6 +32,7 @@ public abstract class TeleLib extends OpMode {
         fl = hardwareMap.dcMotor.get("fr");
         intake = hardwareMap.dcMotor.get("intake");
         lift = hardwareMap.dcMotor.get("lift");
+        wheel = hardwareMap.dcMotor.get("wheel");
 
         //TODO: Sophia - Initialize the Servos' hardware maps
 
@@ -152,7 +154,7 @@ public abstract class TeleLib extends OpMode {
 
         //TODO: Sophia - create grabber method (GP2: a = grabber pos toggle bw 0 and 1; b = arm pos toggle bw 0 and 1)
         //^^This is a bit complicated so you make sure to ask for help if you need it!
-        public void claw () {
+        public void box () {
 
             if (gamepad2.a == false && grabber.getPosition() == 1) {
                 grabber.setPosition(0);
@@ -160,11 +162,14 @@ public abstract class TeleLib extends OpMode {
             else if (gamepad2.a == true && grabber.getPosition() == 0) {
                 grabber.setPosition(1);
             }
-            if (gamepad2.b == false && arm.getPosition() == 1) {
-                arm.setPosition(0);
+        }
+
+        public void wheel () {
+            if (gamepad2.b == true){
+                wheel.setPower(1);
             }
-            else if (gamepad2.b == true && arm.getPosition() == 0) {
-                arm.setPosition(1);
+            else if (!gamepad2.b){
+                wheel.setPower(0);
             }
         }
     }
