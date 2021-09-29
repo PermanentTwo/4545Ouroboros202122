@@ -19,6 +19,7 @@ public abstract class TeleLib extends OpMode {
     public DcMotor lift;
     public DcMotor wheel;
     public Servo grabber;
+    public Servo linearActuator;
 
     public ThreadHandler th_arcade;
 
@@ -37,6 +38,7 @@ public abstract class TeleLib extends OpMode {
         //TODO: Sophia - Initialize the Servos' hardware maps
 
         grabber = hardwareMap.servo.get("box");
+        linearActuator = hardwareMap.servo.get ("la");
 
         //Set directions and zero power behavior
         br.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -173,6 +175,15 @@ public abstract class TeleLib extends OpMode {
             }
             else if (!gamepad2.b){
                 wheel.setPower(0);
+            }
+        }
+
+        public void linearActuator(){
+            if (gamepad2.x == true){
+                linearActuator.setPosition(1);
+                }
+            else if (!gamepad2.x){
+                linearActuator.setPosition(0);
             }
         }
     }
