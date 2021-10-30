@@ -160,6 +160,7 @@ public class VisionCamera {
                     opMode.telemetry.addData("Blue", bluePixel);
                     opMode.telemetry.update();*/
         }
+        opMode.telemetry.addData("Position", location);
         return location;
     }
 }
