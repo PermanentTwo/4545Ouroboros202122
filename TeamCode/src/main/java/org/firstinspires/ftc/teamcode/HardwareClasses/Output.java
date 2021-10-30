@@ -2,8 +2,6 @@ package org.firstinspires.ftc.teamcode.HardwareClasses;
 
 import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.hardwareMap;
 
-import android.provider.SearchRecentSuggestions;
-
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;

@@ -1,11 +1,11 @@
 package org.firstinspires.ftc.teamcode.HardwareClasses;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
-
 
 import org.firstinspires.ftc.teamcode.ThreadHandler;
 
@@ -16,11 +16,12 @@ public abstract class TeleLib extends OpMode {
     public DcMotor fl;
     public DcMotor fr;
     public DcMotor intake;
-    public DcMotor intake2;
     public DcMotor lift;
     public DcMotor wheel;
-    public Servo grabber;
+    public Servo boxServo;
     public Servo linearActuator;
+    public CRServo carouselLeft;
+    public CRServo carouselRight;
 
     public ThreadHandler th_arcade;
 
@@ -32,13 +33,14 @@ public abstract class TeleLib extends OpMode {
         bl = hardwareMap.dcMotor.get("bl");
         fl = hardwareMap.dcMotor.get("fr");
         intake = hardwareMap.dcMotor.get("intake");
-        intake2 = hardwareMap.dcMotor.get("intake2");
         lift = hardwareMap.dcMotor.get("lift");
         wheel = hardwareMap.dcMotor.get("wheel");
+        carouselLeft = hardwareMap.crservo.get("carouselLeft");
+        carouselRight = hardwareMap.crservo.get("carouselRight");
 
         //TODO: Sophia - Initialize the Servos' hardware maps
 
-        grabber = hardwareMap.servo.get("box");
+        boxServo = hardwareMap.servo.get("box");
         linearActuator = hardwareMap.servo.get ("la");
 
         //Set directions and zero power behavior
@@ -47,7 +49,6 @@ public abstract class TeleLib extends OpMode {
         bl.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         fl.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         intake.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        intake2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         lift.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
 
@@ -56,8 +57,9 @@ public abstract class TeleLib extends OpMode {
         bl.setDirection(DcMotorSimple.Direction.FORWARD);
         fl.setDirection(DcMotorSimple.Direction.FORWARD);
         intake.setDirection(DcMotorSimple.Direction.FORWARD);
-        intake2.setDirection(DcMotorSimple.Direction.FORWARD);
         lift.setDirection(DcMotorSimple.Direction.FORWARD);
+        carouselLeft.setDirection(DcMotorSimple.Direction.FORWARD);
+        carouselRight.setDirection(DcMotorSimple.Direction.FORWARD);
 
         th_arcade = new ThreadHandler();
     }
@@ -130,13 +132,10 @@ public abstract class TeleLib extends OpMode {
             boolean left_bumper = gamepad2.left_bumper;
             if (right_bumper) {
                 intake.setPower(1);
-                intake2.setPower(1);
             } else if (left_bumper) {
                 intake.setPower(-1);
-                intake2.setPower(-1);
             } else {
                 intake.setPower(0);
-                intake2.setPower(0);
             }
         }
 
@@ -162,11 +161,11 @@ public abstract class TeleLib extends OpMode {
         //^^This is a bit complicated so you make sure to ask for help if you need it!
         public void box () {
 
-            if (gamepad2.a == false && grabber.getPosition() == 1) {
-                grabber.setPosition(0);
+            if (gamepad2.a == false && boxServo.getPosition() == 1) {
+                boxServo.setPosition(0);
             }
-            else if (gamepad2.a == true && grabber.getPosition() == 0) {
-                grabber.setPosition(1);
+            else if (gamepad2.a == true && boxServo.getPosition() == 0) {
+                boxServo.setPosition(1);
             }
         }
 
@@ -187,4 +186,22 @@ public abstract class TeleLib extends OpMode {
                 linearActuator.setPosition(0);
             }
         }
+
+        public void carouselLeft(){
+           if (gamepad2.x){
+               carouselLeft.setPower(1);
+           }
+           else if(!gamepad2.x){
+               carouselLeft.setPower(0);
+           }
+        }
+
+        public void carouselRight(){
+            if (gamepad2.x){
+                carouselRight.setPower(1);
+            }
+            else if(!gamepad2.x){
+                carouselLeft.setPower(0);
+            }
+    }
     }

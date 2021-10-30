@@ -1,9 +1,12 @@
 package org.firstinspires.ftc.teamcode.HardwareClasses;
 
+import static android.graphics.Color.blue;
+import static android.graphics.Color.green;
+import static android.graphics.Color.red;
+
 import android.graphics.Bitmap;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.vuforia.Frame;
 import com.vuforia.Image;
 import com.vuforia.PIXEL_FORMAT;
 import com.vuforia.Vuforia;
@@ -11,12 +14,6 @@ import com.vuforia.Vuforia;
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
-
-import java.util.ArrayList;
-
-import static android.graphics.Color.blue;
-import static android.graphics.Color.green;
-import static android.graphics.Color.red;
 
 public class VisionCamera {
     LinearOpMode opMode;
