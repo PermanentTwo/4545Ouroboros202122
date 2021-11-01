@@ -20,7 +20,7 @@ public class Carousel {
 
 
     }
-    public void CarouselLeftRightDoubleTrouble(double time){
+    public void carouselLeftRightDoubleTrouble(double time){
         runtime.reset();
         while(runtime.seconds() < time){
             carouselLeft.setPower(1);
