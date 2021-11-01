@@ -17,9 +17,9 @@ public abstract class TeleLib extends OpMode {
     public DcMotor fr;
     public DcMotor intake;
     public DcMotor lift;
-    public DcMotor wheel;
+    //public DcMotor wheel;
     public Servo boxServo;
-    public Servo linearActuator;
+    //public Servo linearActuator;
     public CRServo carouselLeft;
     public CRServo carouselRight;
 
@@ -34,14 +34,14 @@ public abstract class TeleLib extends OpMode {
         fl = hardwareMap.dcMotor.get("fr");
         intake = hardwareMap.dcMotor.get("intake");
         lift = hardwareMap.dcMotor.get("lift");
-        wheel = hardwareMap.dcMotor.get("wheel");
+        //wheel = hardwareMap.dcMotor.get("wheel");
         carouselLeft = hardwareMap.crservo.get("carouselLeft");
         carouselRight = hardwareMap.crservo.get("carouselRight");
 
         //TODO: Sophia - Initialize the Servos' hardware maps
 
         boxServo = hardwareMap.servo.get("box");
-        linearActuator = hardwareMap.servo.get ("la");
+        //linearActuator = hardwareMap.servo.get ("la");
 
         //Set directions and zero power behavior
         br.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -94,7 +94,7 @@ public abstract class TeleLib extends OpMode {
     double half = .5;
 
     //TODO: Sophia - Create arcade drive method (GP1: left stick linear, right stick turning)
-        //I got most of this from the example so I don't think i did it right
+    //I got most of this from the example so I don't think i did it right
     public void arcadeDrive() {
 
 
@@ -126,82 +126,66 @@ public abstract class TeleLib extends OpMode {
         }
 
     }
-        //intake method (GP2: right bumper forward, left bumper backwards)
-        public void intake () {
-            boolean right_bumper = gamepad2.right_bumper;
-            boolean left_bumper = gamepad2.left_bumper;
-            if (right_bumper) {
-                intake.setPower(1);
-            } else if (left_bumper) {
-                intake.setPower(-1);
-            } else {
-                intake.setPower(0);
-            }
+    //intake method (GP2: right bumper forward, left bumper backwards)
+    public void intake () {
+        boolean right_bumper = gamepad2.right_bumper;
+        boolean left_bumper = gamepad2.left_bumper;
+        if (right_bumper) {
+            intake.setPower(1);
+        } else if (left_bumper) {
+            intake.setPower(-1);
+        } else {
+            intake.setPower(0);
         }
-
-        //lift method (GP2: right joystick up and down)
-        public void lift () {
-            if (Math.abs(gamepad2.right_stick_y) > .05) {
-                lift.setPower(gamepad2.right_stick_y);
-            } else {
-                lift.setPower(0);
-            }
-        }
-
-        //Set power of all motors to 0
-        public void killMotors () {
-            fl.setPower(0);
-            fr.setPower(0);
-            bl.setPower(0);
-            br.setPower(0);
-
-        }
-
-        //TODO: Sophia - create grabber method (GP2: a = grabber pos toggle bw 0 and 1; b = arm pos toggle bw 0 and 1)
-        //^^This is a bit complicated so you make sure to ask for help if you need it!
-        public void box () {
-
-            if (gamepad2.a == false && boxServo.getPosition() == 1) {
-                boxServo.setPosition(0);
-            }
-            else if (gamepad2.a == true && boxServo.getPosition() == 0) {
-                boxServo.setPosition(1);
-            }
-        }
-
-        public void wheel () {
-            if (gamepad2.b == true){
-                wheel.setPower(1);
-            }
-            else if (!gamepad2.b){
-                wheel.setPower(0);
-            }
-        }
-
-        public void linearActuator(){
-            if (gamepad2.x == true){
-                linearActuator.setPosition(1);
-                }
-            else if (!gamepad2.x){
-                linearActuator.setPosition(0);
-            }
-        }
-
-        public void carouselLeft(){
-           if (gamepad2.x){
-               carouselLeft.setPower(1);
-           }
-           else if(!gamepad2.x){
-               carouselLeft.setPower(0);
-           }
-        }
-
-        public void carouselRight(){
-            if (gamepad2.x){
-                carouselRight.setPower(1);
-            }
-            else if(!gamepad2.x){
-                carouselLeft.setPower(0);
-            }
     }
+
+    //lift method (GP2: right joystick up and down)
+    public void lift () {
+        if (Math.abs(gamepad2.right_stick_y) > .05) {
+            lift.setPower(gamepad2.right_stick_y);
+        } else {
+            lift.setPower(0);
+        }
     }
+
+    //Set power of all motors to 0
+    public void killMotors () {
+        fl.setPower(0);
+        fr.setPower(0);
+        bl.setPower(0);
+        br.setPower(0);
+        lift.setPower(0);
+        intake.setPower(0);
+
+    }
+
+    //TODO: Sophia - create grabber method (GP2: a = grabber pos toggle bw 0 and 1; b = arm pos toggle bw 0 and 1)
+    //^^This is a bit complicated so you make sure to ask for help if you need it!
+    public void box () {
+
+        if (gamepad2.a == false && boxServo.getPosition() == 1) {
+            boxServo.setPosition(0);
+        }
+        else if (gamepad2.a == true && boxServo.getPosition() == 0) {
+            boxServo.setPosition(1);
+        }
+    }
+
+    public void carouselLeft(){
+        if (gamepad2.x){
+            carouselLeft.setPower(1);
+        }
+        else if(!gamepad2.x){
+            carouselLeft.setPower(0);
+        }
+    }
+
+    public void carouselRight(){
+        if (gamepad2.x){
+            carouselRight.setPower(1);
+        }
+        else if(!gamepad2.x){
+            carouselLeft.setPower(0);
+        }
+    }
+}
