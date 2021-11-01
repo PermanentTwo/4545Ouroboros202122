@@ -38,6 +38,7 @@ public class BlueCarousel extends LinearOpMode {
                 dt.encoderMove(-.5, -20, 3);
                 dt.turnPID(135, true, .7/135, .01, .02/135, 2);
                 dt.encoderMove(.8, 20, 3);
+                carousel.CarouselLeftRightDoubleTrouble(5);
                 dt.encoderMove(-1, -100, 5);
 
 
@@ -54,6 +55,7 @@ public class BlueCarousel extends LinearOpMode {
                 dt.encoderMove(-.5, -20, 3);
                 dt.turnPID(135, true, .7/135, .01, .02/135, 2);
                 dt.encoderMove(.8, 20, 3);
+                carousel.CarouselLeftRightDoubleTrouble(5);
                 dt.encoderMove(-1, -100, 5);
 
             case 3:
@@ -68,6 +70,7 @@ public class BlueCarousel extends LinearOpMode {
                 dt.encoderMove(-.5, -20, 3);
                 dt.turnPID(135, true, .7/135, .01, .02/135, 2);
                 dt.encoderMove(.8, 20, 3);
+                carousel.CarouselLeftRightDoubleTrouble(5);
                 dt.encoderMove(-1, -100, 5);
         }
 
