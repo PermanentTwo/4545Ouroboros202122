@@ -42,6 +42,12 @@ public class Output {
         opMode.sleep(500);
         box(true);
     }
+    public void liftDown() {
+        while (lift.getCurrentPosition() > 0 && opMode.opModeIsActive()) {
+            lift.setPower(-.8);
+        }
+        lift.setPower(0);
+    }
 
     public void box(boolean push) {
 

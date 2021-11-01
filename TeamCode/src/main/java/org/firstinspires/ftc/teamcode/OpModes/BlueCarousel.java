@@ -29,11 +29,46 @@ public class BlueCarousel extends LinearOpMode {
 
             case 1:
 
+                dt.encoderMove(.5, 5, 2);
+                dt.turnPID(45, false, 45/.7, .01, .02/45, 2);
+                dt.encoderMove(.7, 24, 3);
+                out.box(true);
+                sleep(500);
+                out.box(false);
+                dt.encoderMove(-.5, -20, 3);
+                dt.turnPID(135, true, .7/135, .01, .02/135, 2);
+                dt.encoderMove(.8, 20, 3);
+                dt.encoderMove(-1, -100, 5);
+
 
             case 2:
 
+                dt.encoderMove(.5, 5, 2);
+                dt.turnPID(45, false, 45/.7, .01, .02/45, 2);
+                dt.encoderMove(.7, 24, 3);
+                out.liftUp(2);
+                out.box(true);
+                sleep(500);
+                out.box(false);
+                out.liftDown();
+                dt.encoderMove(-.5, -20, 3);
+                dt.turnPID(135, true, .7/135, .01, .02/135, 2);
+                dt.encoderMove(.8, 20, 3);
+                dt.encoderMove(-1, -100, 5);
 
             case 3:
+                dt.encoderMove(.5, 5, 2);
+                dt.turnPID(45, false, 45/.7, .01, .02/45, 2);
+                dt.encoderMove(.7, 24, 3);
+                out.liftUp(3);
+                out.box(true);
+                sleep(500);
+                out.box(false);
+                out.liftDown();
+                dt.encoderMove(-.5, -20, 3);
+                dt.turnPID(135, true, .7/135, .01, .02/135, 2);
+                dt.encoderMove(.8, 20, 3);
+                dt.encoderMove(-1, -100, 5);
         }
 
     }
