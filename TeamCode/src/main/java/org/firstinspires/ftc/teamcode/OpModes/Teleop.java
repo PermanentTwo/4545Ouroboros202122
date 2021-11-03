@@ -13,8 +13,7 @@ public class Teleop extends TeleLib {
         arcadeDrive();
         intake();
         box();
-        carouselLeft();
-        carouselRight();
+        carousel();
         telemetry();
 
     }

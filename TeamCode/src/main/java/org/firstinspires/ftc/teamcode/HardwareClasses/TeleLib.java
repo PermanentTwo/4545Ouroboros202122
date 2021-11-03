@@ -35,8 +35,8 @@ public abstract class TeleLib extends OpMode {
         intake = hardwareMap.dcMotor.get("intake");
         lift = hardwareMap.dcMotor.get("lift");
         //wheel = hardwareMap.dcMotor.get("wheel");
-        carouselLeft = hardwareMap.crservo.get("carouselLeft");
-        carouselRight = hardwareMap.crservo.get("carouselRight");
+        carouselLeft = hardwareMap.crservo.get("lc");
+        carouselRight = hardwareMap.crservo.get("rc");
 
         //TODO: Sophia - Initialize the Servos' hardware maps
 
@@ -58,8 +58,7 @@ public abstract class TeleLib extends OpMode {
         fl.setDirection(DcMotorSimple.Direction.FORWARD);
         intake.setDirection(DcMotorSimple.Direction.FORWARD);
         lift.setDirection(DcMotorSimple.Direction.REVERSE);
-        carouselLeft.setDirection(DcMotorSimple.Direction.FORWARD);
-        carouselRight.setDirection(DcMotorSimple.Direction.FORWARD);
+
 
         th_arcade = new ThreadHandler();
     }
@@ -160,30 +159,23 @@ public abstract class TeleLib extends OpMode {
     public void box () {
 
         if (gamepad2.a) {
-            boxServo.setPosition(-.2);
+            boxServo.setPosition(0);
         }
         else if (gamepad2.b) {
-            boxServo.setPosition(.5);
+            boxServo.setPosition(.6);
         }
     }
 
-    public void carouselLeft(){
+    public void carousel(){
         if (gamepad2.x){
-            carouselLeft.setPower(1);
+            carouselLeft.setPower(-1);
+            carouselRight.setPower(-1);
         }
-        else if(!gamepad2.x){
-            carouselLeft.setPower(0);
-        }
+        carouselLeft.setPower(0);
+        carouselRight.setPower(0);
+
     }
 
-    public void carouselRight(){
-        if (gamepad2.x){
-            carouselRight.setPower(1);
-        }
-        else if(!gamepad2.x){
-            carouselLeft.setPower(0);
-        }
-    }
     public void telemetry() {
         telemetry.addData("half on?", half);
         telemetry.addData("box servo pos", boxServo.getPosition());
@@ -192,5 +184,7 @@ public abstract class TeleLib extends OpMode {
         telemetry.addData("br", br.getPower());
         telemetry.addData("fl", fl.getPower());
         telemetry.addData("fr", fr.getPower());
+        telemetry.addData("lc power", carouselLeft.getPower());
+        telemetry.addData("rc power", carouselRight.getPower());
     }
 }
