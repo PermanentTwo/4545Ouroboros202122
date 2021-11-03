@@ -13,7 +13,10 @@ public class Teleop extends TeleLib {
         arcadeDrive();
         intake();
         box();
-        wheel();
+        carouselLeft();
+        carouselRight();
+        telemetry();
+
     }
 
     @Override

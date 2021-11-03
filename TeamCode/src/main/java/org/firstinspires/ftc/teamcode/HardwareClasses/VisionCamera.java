@@ -134,13 +134,13 @@ public class VisionCamera {
             int greenPixel1 = green(bitmap.getPixel(100, 250));
             int bluePixel1 = blue(bitmap.getPixel(100, 250));
 
-            int redPixel2 = red(bitmap.getPixel(400, 250));
-            int greenPixel2 = green(bitmap.getPixel(400, 250));
-            int bluePixel2 = blue(bitmap.getPixel(400, 250));
+            int redPixel2 = red(bitmap.getPixel(300, 250));
+            int greenPixel2 = green(bitmap.getPixel(300, 250));
+            int bluePixel2 = blue(bitmap.getPixel(300, 250));
 
-            int redPixel3 = red(bitmap.getPixel(700, 250));
-            int greenPixel3 = green(bitmap.getPixel(700, 250));
-            int bluePixel3 = blue(bitmap.getPixel(700, 250));
+            int redPixel3 = red(bitmap.getPixel(600, 250));
+            int greenPixel3 = green(bitmap.getPixel(600, 250));
+            int bluePixel3 = blue(bitmap.getPixel(600, 250));
             // if (bitmap.getColor(100,250) == bitmap.)
 
             if (redPixel1 < 30 && greenPixel1 < 30 && bluePixel1 < 30) {
