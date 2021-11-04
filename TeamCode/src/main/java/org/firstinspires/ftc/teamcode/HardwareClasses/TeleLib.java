@@ -24,6 +24,7 @@ public abstract class TeleLib extends OpMode {
     public CRServo carouselRight;
 
     public ThreadHandler th_arcade;
+    public ThreadHandler th_lift;
 
     @Override
     public void init() {
@@ -61,6 +62,7 @@ public abstract class TeleLib extends OpMode {
 
 
         th_arcade = new ThreadHandler();
+        th_lift = new ThreadHandler();
     }
 
     Thread half_speed = new Thread(new Runnable() {
@@ -135,10 +137,59 @@ public abstract class TeleLib extends OpMode {
         }
     }
 
-    //lift method (GP2: right joystick up and down)
+    boolean liftOverrideToggle = false;
+    Thread no_override = new Thread(new Runnable() {
+        @Override
+        public void run() {
+            ElapsedTime time = new ElapsedTime();
+            time.reset();
+            while(time.milliseconds() < 300){
+
+            }
+            liftOverrideToggle = false;
+        }
+    });
+    Thread yes_override = new Thread(new Runnable() {
+        @Override
+        public void run() {
+            ElapsedTime time = new ElapsedTime();
+            time.reset();
+            while(time.milliseconds() < 300){
+
+            }
+            liftOverrideToggle = true;
+        }
+    });
+    Thread down_macro = new Thread(new Runnable() {
+        @Override
+        public void run() {
+            ElapsedTime time = new ElapsedTime();
+            time.reset();
+            while(time.milliseconds() < 300){
+
+            }
+            while (lift.getCurrentPosition() > 0) {
+                lift.setPower(-1);
+            }
+            lift.setPower(0);
+        }
+    });
+
+    //lift method (GP2: left joystick up and down)
     public void lift () {
-        if (Math.abs(gamepad2.right_stick_y) > .5) {
-            lift.setPower(gamepad2.right_stick_y);
+        if (gamepad2.left_stick_button && liftOverrideToggle) {
+            th_lift.queue(no_override);
+        } else if (gamepad2.left_stick_button && !liftOverrideToggle) {
+            th_lift.queue(yes_override);
+        }
+        if (gamepad2.left_trigger > .5) {
+            th_lift.queue(down_macro);
+        }
+
+        if (Math.abs(gamepad2.left_stick_y) > .5 && lift.getCurrentPosition() > 0 && !liftOverrideToggle) {
+            lift.setPower(gamepad2.left_stick_y);
+        } else if (Math.abs(gamepad2.left_stick_y) > .5 && liftOverrideToggle){
+            lift.setPower(gamepad2.left_stick_y);
         }
         lift.setPower(0);
     }
@@ -153,6 +204,9 @@ public abstract class TeleLib extends OpMode {
         intake.setPower(0);
 
     }
+
+
+
 
     //TODO: Sophia - create grabber method (GP2: a = grabber pos toggle bw 0 and 1; b = arm pos toggle bw 0 and 1)
     //^^This is a bit complicated so you make sure to ask for help if you need it!
@@ -178,8 +232,10 @@ public abstract class TeleLib extends OpMode {
 
     public void telemetry() {
         telemetry.addData("half on?", half);
+        telemetry.addData("lift override on?", liftOverrideToggle);
         telemetry.addData("box servo pos", boxServo.getPosition());
         telemetry.addData("lift power", lift.getPower());
+        telemetry.addData("lift pos", lift.getCurrentPosition());
         telemetry.addData("bl", bl.getPower());
         telemetry.addData("br", br.getPower());
         telemetry.addData("fl", fl.getPower());
