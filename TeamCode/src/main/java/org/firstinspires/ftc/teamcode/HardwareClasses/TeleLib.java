@@ -52,12 +52,12 @@ public abstract class TeleLib extends OpMode {
         lift.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
 
-        br.setDirection(DcMotorSimple.Direction.REVERSE);
-        fr.setDirection(DcMotorSimple.Direction.REVERSE);
-        bl.setDirection(DcMotorSimple.Direction.FORWARD);
-        fl.setDirection(DcMotorSimple.Direction.FORWARD);
+        br.setDirection(DcMotorSimple.Direction.FORWARD);
+        fr.setDirection(DcMotorSimple.Direction.FORWARD);
+        bl.setDirection(DcMotorSimple.Direction.REVERSE);
+        fl.setDirection(DcMotorSimple.Direction.REVERSE);
         intake.setDirection(DcMotorSimple.Direction.FORWARD);
-        lift.setDirection(DcMotorSimple.Direction.REVERSE);
+        lift.setDirection(DcMotorSimple.Direction.FORWARD);
 
 
         th_arcade = new ThreadHandler();
@@ -109,10 +109,10 @@ public abstract class TeleLib extends OpMode {
 
         if (Math.abs(left_stick_y) > 0.05 || Math.abs(right_stick_x) > 0.05) {
 
-            fr.setPower(left_stick_y - right_stick_x);
-            fl.setPower(left_stick_y + right_stick_x);
-            br.setPower(left_stick_y - right_stick_x);
-            bl.setPower(left_stick_y + right_stick_x);
+            fr.setPower(left_stick_y + right_stick_x);
+            fl.setPower(left_stick_y - right_stick_x);
+            br.setPower(left_stick_y + right_stick_x);
+            bl.setPower(left_stick_y - right_stick_x);
 
         } else {
             fr.setPower(0);
