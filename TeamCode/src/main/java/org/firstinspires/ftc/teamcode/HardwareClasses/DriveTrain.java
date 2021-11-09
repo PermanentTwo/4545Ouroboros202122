@@ -22,10 +22,10 @@ public class DriveTrain {
     public DriveTrain(LinearOpMode opMode)
     {
         this.opMode = opMode;
-        br = hardwareMap.dcMotor.get("br");
-        fr = hardwareMap.dcMotor.get("fr");
-        bl = hardwareMap.dcMotor.get("bl");
-        fl = hardwareMap.dcMotor.get("fr");
+        br = opMode.hardwareMap.dcMotor.get("br");
+        fr = opMode.hardwareMap.dcMotor.get("fr");
+        bl = opMode.hardwareMap.dcMotor.get("bl");
+        fl = opMode.hardwareMap.dcMotor.get("fl");
 
         br.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         fr.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -36,7 +36,7 @@ public class DriveTrain {
         fr.setDirection(DcMotorSimple.Direction.REVERSE);
         bl.setDirection(DcMotorSimple.Direction.FORWARD);
         fl.setDirection(DcMotorSimple.Direction.FORWARD);
-        Sensors sensors = new Sensors(opMode);
+        sensors = new Sensors(opMode);
     }
     //reset encoders
     public void resetEncoders()
@@ -124,12 +124,12 @@ public class DriveTrain {
         killMotors();
     }
     public void turn(double power, boolean isRight) {
-        if (isRight) {
+        if (!isRight) {
             fr.setPower(-power);
             br.setPower(-power);
             fl.setPower(power);
             bl.setPower(power);
-        } else {
+        } else if (isRight){
             fr.setPower(power);
             br.setPower(power);
             fl.setPower(-power);
@@ -153,7 +153,7 @@ public class DriveTrain {
 
         double initAngle = sensors.getGyroYaw();
 
-        double lastError = angleChange - Math.abs(sensors.getGyroYaw() - initAngle);
+        double lastError = angleChange - 2 - Math.abs(sensors.getGyroYaw() - initAngle);
 
         time.reset();
         timeoutTimer.reset();
@@ -164,7 +164,12 @@ public class DriveTrain {
             prevRunTime = time.seconds();
 
 
-            error = angleChange - Math.abs(sensors.getGyroYaw() - initAngle);
+            if (turnRight) {
+                error = angleChange - Math.abs(sensors.getGyroYaw() - initAngle);
+            }
+            else {
+                error = (angleChange - Math.abs(sensors.getGyroYaw() - initAngle))-360;
+            }
 
 
             proportional = error * kP;

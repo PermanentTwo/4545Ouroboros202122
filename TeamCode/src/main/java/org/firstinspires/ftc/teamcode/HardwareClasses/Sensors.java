@@ -32,7 +32,7 @@ public class Sensors {
         parameters.loggingTag = "IMU";
         parameters.accelerationIntegrationAlgorithm = new JustLoggingAccelerationIntegrator();
 
-        gyro = this.LopMode.hardwareMap.get(BNO055IMU.class, "imu2");
+        gyro = this.LopMode.hardwareMap.get(BNO055IMU.class, "imu");
         // button = this.opMode.hardwareMap.get(TouchSensor.class, "button");
 
         gyro.initialize(parameters);

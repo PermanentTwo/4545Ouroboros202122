@@ -19,8 +19,8 @@ public class Output {
     public Output(LinearOpMode opMode)
     {
         this.opMode = opMode;
-        box = hardwareMap.servo.get ("box");
-        lift = hardwareMap.dcMotor.get("lift");
+        box = opMode.hardwareMap.servo.get ("box");
+        lift = opMode.hardwareMap.dcMotor.get("lift");
     }
 
     //We need to move the lift up 1200 encoder counts
@@ -30,12 +30,12 @@ public class Output {
 
         }
         else if (position == 2) {
-            while (lift.getCurrentPosition() <= 1000 && opMode.opModeIsActive()){
+            while (-lift.getCurrentPosition() <= 1000 && opMode.opModeIsActive()){
               lift.setPower(0.5);
             }
         }
         else if (position == 3) {
-            while (lift.getCurrentPosition() <= 2000 && opMode.opModeIsActive()){
+            while (-lift.getCurrentPosition() <= 2000 && opMode.opModeIsActive()){
                 lift.setPower(0.5);
             }
         }
@@ -43,7 +43,7 @@ public class Output {
         box(true);
     }
     public void liftDown() {
-        while (lift.getCurrentPosition() > 0 && opMode.opModeIsActive()) {
+        while (-lift.getCurrentPosition() > 0 && opMode.opModeIsActive()) {
             lift.setPower(-.8);
         }
         lift.setPower(0);

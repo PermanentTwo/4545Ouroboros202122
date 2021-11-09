@@ -15,8 +15,8 @@ public class Intake{
 
     public Intake(LinearOpMode opMode) {
         opMode = this.opMode;
-        intake = hardwareMap.dcMotor.get("intake");
-        intake2 = hardwareMap.dcMotor.get("intake2");
+        intake = opMode.hardwareMap.dcMotor.get("intake");
+        intake2 = opMode.hardwareMap.dcMotor.get("intake2");
         intake.setDirection(DcMotorSimple.Direction.FORWARD);
         intake2.setDirection(DcMotorSimple.Direction.FORWARD);
         intake.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);

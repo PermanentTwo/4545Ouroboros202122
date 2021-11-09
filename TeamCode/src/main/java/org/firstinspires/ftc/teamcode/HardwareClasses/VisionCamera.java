@@ -91,7 +91,7 @@ public class VisionCamera {
         for (int i = 0; i < numImages; i++) {
             int fmt = frame.getImage(i).getFormat();
 
-            if (fmt == PIXEL_FORMAT.RGB565) {
+            if (fmt == PIXEL_FORMAT.RGB888) {
                 rgb = frame.getImage(i);
                 break;
 

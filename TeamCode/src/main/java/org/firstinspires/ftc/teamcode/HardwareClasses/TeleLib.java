@@ -177,7 +177,7 @@ public abstract class TeleLib extends OpMode {
 
     //lift method (GP2: left joystick up and down)
     public void lift () {
-        if (gamepad2.left_stick_button && liftOverrideToggle) {
+        /*if (gamepad2.left_stick_button && liftOverrideToggle) {
             th_lift.queue(no_override);
         } else if (gamepad2.left_stick_button && !liftOverrideToggle) {
             th_lift.queue(yes_override);
@@ -190,6 +190,13 @@ public abstract class TeleLib extends OpMode {
             lift.setPower(gamepad2.left_stick_y);
         } else if (Math.abs(gamepad2.left_stick_y) > .5 && liftOverrideToggle){
             lift.setPower(gamepad2.left_stick_y);
+        }
+        lift.setPower(0);*/
+        if (gamepad2.left_stick_y > .5) {
+            lift.setPower(1);
+        }
+        else if (gamepad2.left_stick_y < -.5) {
+            lift.setPower(-1);
         }
         lift.setPower(0);
     }

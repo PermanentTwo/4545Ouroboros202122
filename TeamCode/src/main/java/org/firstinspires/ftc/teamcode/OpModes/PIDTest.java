@@ -15,6 +15,6 @@ public class PIDTest extends LinearOpMode {
 
         waitForStart();
 
-        dt.turnPID(90, true, .7/90, .01, .02/90, 3);
+        dt.turnPID(90, false, .7/90, .01, .02/90, 3);
     }
 }

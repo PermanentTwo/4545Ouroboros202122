@@ -112,6 +112,7 @@ import org.firstinspires.ftc.robotcore.internal.network.WifiDirectChannelChanger
 import org.firstinspires.ftc.robotcore.internal.network.WifiMuteEvent;
 import org.firstinspires.ftc.robotcore.internal.network.WifiMuteStateMachine;
 import org.firstinspires.ftc.robotcore.internal.opmode.ClassManager;
+import org.firstinspires.ftc.robotcore.internal.opmode.OnBotJavaHelper;
 import org.firstinspires.ftc.robotcore.internal.system.AppAliveNotifier;
 import org.firstinspires.ftc.robotcore.internal.system.AppUtil;
 import org.firstinspires.ftc.robotcore.internal.system.Assert;
@@ -122,7 +123,9 @@ import org.firstinspires.ftc.robotcore.internal.ui.UILocation;
 import org.firstinspires.ftc.robotcore.internal.webserver.RobotControllerWebInfo;
 import org.firstinspires.ftc.robotserver.internal.programmingmode.ProgrammingModeManager;
 import org.firstinspires.inspection.RcInspectionActivity;
+import org.xmlpull.v1.XmlPullParserException;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -178,7 +181,13 @@ public class FtcRobotControllerActivity extends Activity
   protected class RobotRestarter implements Restarter {
 
     public void requestRestart() {
-      requestRobotRestart();
+      try {
+        requestRobotRestart();
+      } catch (FileNotFoundException e) {
+        e.printStackTrace();
+      } catch (XmlPullParserException e) {
+        e.printStackTrace();
+      }
     }
 
   }
@@ -188,7 +197,13 @@ public class FtcRobotControllerActivity extends Activity
     @Override
     public void onServiceConnected(ComponentName name, IBinder service) {
       FtcRobotControllerBinder binder = (FtcRobotControllerBinder) service;
-      onServiceBind(binder.getService());
+      try {
+        onServiceBind(binder.getService());
+      } catch (FileNotFoundException e) {
+        e.printStackTrace();
+      } catch (XmlPullParserException e) {
+        e.printStackTrace();
+      }
     }
 
     @Override
@@ -559,7 +574,13 @@ public class FtcRobotControllerActivity extends Activity
     } else if (id == R.id.action_restart_robot) {
       dimmer.handleDimTimer();
       AppUtil.getInstance().showToast(UILocation.BOTH, context.getString(R.string.toastRestartingRobot));
-      requestRobotRestart();
+      try {
+        requestRobotRestart();
+      } catch (FileNotFoundException e) {
+        e.printStackTrace();
+      } catch (XmlPullParserException e) {
+        e.printStackTrace();
+      }
       return true;
     }
     else if (id == R.id.action_configure_robot) {
@@ -651,11 +672,17 @@ public class FtcRobotControllerActivity extends Activity
       // We always do a refresh, whether it was a cancel or an OK, for robustness
       shutdownRobot();
       cfgFileMgr.getActiveConfigAndUpdateUI();
-      updateUIAndRequestRobotSetup();
+      try {
+        updateUIAndRequestRobotSetup();
+      } catch (FileNotFoundException e) {
+        e.printStackTrace();
+      } catch (XmlPullParserException e) {
+        e.printStackTrace();
+      }
     }
   }
 
-  public void onServiceBind(final FtcRobotControllerService service) {
+  public void onServiceBind(final FtcRobotControllerService service) throws FileNotFoundException, XmlPullParserException {
     RobotLog.vv(FtcRobotControllerService.TAG, "%s.controllerService=bound", TAG);
     controllerService = service;
     updateUI.setControllerService(controllerService);
@@ -669,13 +696,18 @@ public class FtcRobotControllerActivity extends Activity
       }
 
       @Override
+      public OnBotJavaHelper getOnBotJavaHelper() {
+        return null;
+      }
+
+      @Override
       public EventLoopManager getEventLoopManager() {
         return service.getRobot().eventLoopManager;
       }
     });
   }
 
-  private void updateUIAndRequestRobotSetup() {
+  private void updateUIAndRequestRobotSetup() throws FileNotFoundException, XmlPullParserException {
     if (controllerService != null) {
       callback.networkConnectionUpdate(controllerService.getNetworkConnectionStatus());
       callback.updateRobotStatus(controllerService.getRobotStatus());
@@ -690,7 +722,7 @@ public class FtcRobotControllerActivity extends Activity
     }
   }
 
-  private void requestRobotSetup(@Nullable Runnable runOnComplete) {
+  private void requestRobotSetup(@Nullable Runnable runOnComplete) throws FileNotFoundException, XmlPullParserException {
     if (controllerService == null) return;
 
     RobotConfigFile file = cfgFileMgr.getActiveConfigAndUpdateUI();
@@ -701,6 +733,10 @@ public class FtcRobotControllerActivity extends Activity
       file = RobotConfigFile.noConfig(cfgFileMgr);
       hardwareFactory.setXmlPullParser(file.getXml());
       cfgFileMgr.setActiveConfigAndUpdateUI(false, file);
+    } catch (FileNotFoundException e) {
+      e.printStackTrace();
+    } catch (XmlPullParserException e) {
+      e.printStackTrace();
     }
 
     OpModeRegister userOpModeRegister = createOpModeRegister();
@@ -722,7 +758,7 @@ public class FtcRobotControllerActivity extends Activity
     if (controllerService != null) controllerService.shutdownRobot();
   }
 
-  private void requestRobotRestart() {
+  private void requestRobotRestart() throws FileNotFoundException, XmlPullParserException {
     AppUtil.getInstance().showToast(UILocation.BOTH, AppUtil.getDefContext().getString(R.string.toastRestartingRobot));
     //
     RobotLog.clearGlobalErrorMsg();
