@@ -67,23 +67,8 @@ public class DriveTrain {
     }
     public double getEncoderAverage() {
 
-        double count = 2.0;
-        if (fr.getCurrentPosition() == 0) {
-            count--;
-        }
-        if (fl.getCurrentPosition() == 0) {
-            count--;
-        }
-        if (br.getCurrentPosition() == 0) {
-            count--;
-        }
-        if (bl.getCurrentPosition() == 0) {
-            count--;
-        }
-        if (count == 0) {
-            return 0;
-        }
-        return (fl.getCurrentPosition() + fr.getCurrentPosition()) / count;
+
+        return (bl.getCurrentPosition() + br.getCurrentPosition()) / 2;
     }
     public void setMotorsPower(double power) {
 
@@ -102,16 +87,10 @@ public class DriveTrain {
         time.reset();
 
         distance = distance * COUNTS_PER_INCH;
-        double finalPower = power;
-        power = .2;
         double d = 0;
         while (d < distance && time.seconds() < runtimeS && opMode.opModeIsActive()) {
             d = Math.abs(getEncoderAverage() - initEncoder);
-            if (d <= distance / 1.25) {
-                power += .05;
-            } else if (d > distance / 1.25) {
-                power += -.025;
-            }
+
 
             setMotorsPower(power);
             if (!opMode.opModeIsActive()) {
@@ -124,12 +103,12 @@ public class DriveTrain {
         killMotors();
     }
     public void turn(double power, boolean isRight) {
-        if (!isRight) {
+        if (isRight) {
             fr.setPower(-power);
             br.setPower(-power);
             fl.setPower(power);
             bl.setPower(power);
-        } else if (isRight){
+        } else if (!isRight){
             fr.setPower(power);
             br.setPower(power);
             fl.setPower(-power);
@@ -164,12 +143,9 @@ public class DriveTrain {
             prevRunTime = time.seconds();
 
 
-            if (turnRight) {
-                error = angleChange - Math.abs(sensors.getGyroYaw() - initAngle);
-            }
-            else {
-                error = (angleChange - Math.abs(sensors.getGyroYaw() - initAngle))-360;
-            }
+
+            error = angleChange - Math.abs(sensors.getGyroYaw() - initAngle);
+
 
 
             proportional = error * kP;
@@ -200,10 +176,10 @@ public class DriveTrain {
             opMode.telemetry.update();
 
             lastError = error;
-           /* if (sensors.getGyroYaw2() < 360 && sensors.getGyroYaw() > 180)
+            if (sensors.getGyroYaw() < 360 && sensors.getGyroYaw() > 180)
             {
                 initAngle = 360;
-            }*/
+            }
 
             opMode.idle();
 

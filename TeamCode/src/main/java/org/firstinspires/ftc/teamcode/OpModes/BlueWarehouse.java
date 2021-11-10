@@ -17,15 +17,19 @@ public class BlueWarehouse extends LinearOpMode {
 
         waitForStart();
 
-        Carousel carousel = new Carousel(this);
+        //Carousel carousel = new Carousel(this);
         DriveTrain dt = new DriveTrain(this);
-        Intake intake = new Intake(this);
-        Output out = new Output(this);
-        Sensors sensors = new Sensors(this);
-        VisionCamera vision = new VisionCamera(this);
+        //Intake intake = new Intake(this);
+        //Output out = new Output(this);
+        //Sensors sensors = new Sensors(this);
+        //VisionCamera vision = new VisionCamera(this);
 
         waitForStart();
-        int pos = vision.senseBlue(this);
+        dt.encoderMove(.6, 10, 3);
+        dt.turnPID(90, true, .7/90, .02, .02/90, 3);
+        dt.encoderMove(-1, 60, 4);
+
+        /*int pos = vision.senseBlue(this);
         switch (pos) {
             case 1:
                 dt.turnPID(45, true, 90 / .7, .01, .02 / 45, 2);
@@ -65,6 +69,6 @@ public class BlueWarehouse extends LinearOpMode {
                 dt.turnPID(45, true, .7 / 45, .01, .02 / 45, 2);
                 dt.encoderMove(-.5, -2, 2);
 
-        }
+        }*/
     }
 }

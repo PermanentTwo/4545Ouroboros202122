@@ -52,6 +52,14 @@ public abstract class TeleLib extends OpMode {
         intake.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         lift.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
+        /*fl.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+        fr.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+        bl.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+        br.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+*/
 
         br.setDirection(DcMotorSimple.Direction.FORWARD);
         fr.setDirection(DcMotorSimple.Direction.FORWARD);
@@ -243,11 +251,12 @@ public abstract class TeleLib extends OpMode {
         telemetry.addData("box servo pos", boxServo.getPosition());
         telemetry.addData("lift power", lift.getPower());
         telemetry.addData("lift pos", lift.getCurrentPosition());
-        telemetry.addData("bl", bl.getPower());
-        telemetry.addData("br", br.getPower());
-        telemetry.addData("fl", fl.getPower());
-        telemetry.addData("fr", fr.getPower());
+        telemetry.addData("bl", bl.getCurrentPosition());
+        telemetry.addData("br", br.getCurrentPosition());
+        telemetry.addData("fl", fl.getCurrentPosition());
+        telemetry.addData("fr", fr.getCurrentPosition());
         telemetry.addData("lc power", carouselLeft.getPower());
         telemetry.addData("rc power", carouselRight.getPower());
+        telemetry.update();
     }
 }

@@ -14,17 +14,22 @@ import org.firstinspires.ftc.teamcode.HardwareClasses.VisionCamera;
 public class BlueCarousel extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
-        Carousel carousel = new Carousel(this);
+        //Carousel carousel = new Carousel(this);
         DriveTrain dt = new DriveTrain(this);
-        Intake intake = new Intake(this);
-        Output out = new Output(this);
-        Sensors sensors = new Sensors(this);
-        VisionCamera vision = new VisionCamera(this);
+        //Intake intake = new Intake(this);
+        //Output out = new Output(this);
+        //Sensors sensors = new Sensors(this);
+        //VisionCamera vision = new VisionCamera(this);
 
 
 
         waitForStart();
-        int pos = vision.senseBlue(this);
+        dt.encoderMove(.6, 10, 3);
+        dt.turnPID(90, true, .7/90, .02, .02/90, 3);
+        dt.encoderMove(-1, 100, 4);
+
+        //dt.encoderMove(.6, 15, 3);
+        /*int pos = vision.senseBlue(this);
         switch (pos) {
 
             case 1:
@@ -73,6 +78,6 @@ public class BlueCarousel extends LinearOpMode {
                 carousel.carouselLeftRightDoubleTrouble(5);
                 dt.encoderMove(-1, -100, 5);
         }
-
+*/
     }
 }

@@ -14,6 +14,6 @@ public class EncoderMoveTest extends LinearOpMode {
 
         waitForStart();
 
-        dt.encoderMove(.5, 24, 3);
+        dt.encoderMove(-.6, 10, 3);
     }
 }
