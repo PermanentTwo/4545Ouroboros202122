@@ -15,8 +15,8 @@ public class Carousel {
 
     public Carousel(LinearOpMode opMode) {
         opMode = this.opMode;
-        carouselLeft = hardwareMap.crservo.get("carouselLeft");
-        carouselRight = hardwareMap.crservo.get("carouselRight");
+        carouselLeft = opMode.hardwareMap.crservo.get("carouselLeft");
+        carouselRight = opMode.hardwareMap.crservo.get("carouselRight");
 
 
     }

@@ -205,8 +205,9 @@ public abstract class TeleLib extends OpMode {
         }
         else if (gamepad2.left_stick_y < -.5) {
             lift.setPower(-1);
+        } else {
+            lift.setPower(0);
         }
-        lift.setPower(0);
     }
 
     //Set power of all motors to 0

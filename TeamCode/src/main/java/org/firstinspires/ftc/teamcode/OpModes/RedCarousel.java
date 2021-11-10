@@ -15,18 +15,19 @@ public class RedCarousel extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
 
-        Carousel carousel = new Carousel(this);
         DriveTrain dt = new DriveTrain(this);
-        Intake intake = new Intake(this);
-        Output out = new Output(this);
-        Sensors sensors = new Sensors(this);
-        VisionCamera vision = new VisionCamera(this);
+        //Intake intake = new Intake(this);
+        //Output out = new Output(this);
+        //Sensors sensors = new Sensors(this);
+        //VisionCamera vision = new VisionCamera(this);
 
 
 
         waitForStart();
-        int pos = vision.senseBlue(this);
-        switch (pos) {
+        dt.encoderMove(.6, 10, 3);
+        dt.turnPID(90, true, .7/90, .02, .02/90, 3);
+        dt.encoderMove(1, 100, 4);
+        /*switch (pos) {
 
             case 1:
 
@@ -73,6 +74,6 @@ public class RedCarousel extends LinearOpMode {
                 dt.encoderMove(.8, 20, 3);
                 carousel.carouselLeftRightDoubleTrouble(5);
                 dt.encoderMove(-1, -100, 5);
-        }
+        }*/
     }
 }

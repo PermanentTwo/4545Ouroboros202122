@@ -15,16 +15,18 @@ public class RedWarehouse extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
 
-        Carousel carousel = new Carousel(this);
+        //Carousel carousel = new Carousel(this);
         DriveTrain dt = new DriveTrain(this);
-        Intake intake = new Intake(this);
-        Output out = new Output(this);
-        Sensors sensors = new Sensors(this);
-        VisionCamera vision = new VisionCamera(this);
+        //Intake intake = new Intake(this);
+        //Output out = new Output(this);
+        //Sensors sensors = new Sensors(this);
+        //VisionCamera vision = new VisionCamera(this);
 
         waitForStart();
-        int pos = vision.senseBlue(this);
-        switch (pos) {
+        dt.encoderMove(.6, 10, 3);
+        dt.turnPID(90, true, .7/90, .02, .02/90, 3);
+        dt.encoderMove(1, 60, 4);
+       /* switch (pos) {
             case 1:
                 dt.encoderMove(.5, 1, 2);
                 dt.turnPID(45, false, 45/.7, .01, .02/45, 2);
@@ -66,6 +68,6 @@ public class RedWarehouse extends LinearOpMode {
                 dt.encoderMove(-.5, -2, 2);
                 dt.turnPID(45, false, .7/45, .01, .02/45, 2);
                 dt.encoderMove(.8, 5, 3);
-        }
+        }*/
     }
 }

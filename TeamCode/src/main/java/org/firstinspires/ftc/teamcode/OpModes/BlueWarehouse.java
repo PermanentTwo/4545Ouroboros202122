@@ -15,7 +15,6 @@ public class BlueWarehouse extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
 
-        waitForStart();
 
         //Carousel carousel = new Carousel(this);
         DriveTrain dt = new DriveTrain(this);
