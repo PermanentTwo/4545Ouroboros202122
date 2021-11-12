@@ -36,8 +36,8 @@ public abstract class TeleLib extends OpMode {
         intake = hardwareMap.dcMotor.get("intake");
         lift = hardwareMap.dcMotor.get("lift");
         //wheel = hardwareMap.dcMotor.get("wheel");
-        carouselLeft = hardwareMap.crservo.get("lc");
-        carouselRight = hardwareMap.crservo.get("rc");
+        carouselLeft = hardwareMap.dcMotor.get("lc");
+        carouselRight = hardwareMap.dcMotor.get("rc");
 
         //TODO: Sophia - Initialize the Servos' hardware maps
 
@@ -238,8 +238,8 @@ public abstract class TeleLib extends OpMode {
 
     public void carousel(){
         if (gamepad2.x){
-            carouselLeft.setPower(-1);
-            carouselRight.setPower(-1);
+            carouselLeft.setPower(-0.5);
+            carouselRight.setPower(-0.5);
         }
         carouselLeft.setPower(0);
         carouselRight.setPower(0);
