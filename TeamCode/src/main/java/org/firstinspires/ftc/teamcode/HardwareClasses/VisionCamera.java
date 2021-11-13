@@ -120,9 +120,9 @@ public class VisionCamera {
     }
 
     //only using blue for now
-    public int senseBlue(LinearOpMode opMode) throws InterruptedException {
+    public int senseRed(LinearOpMode opMode) throws InterruptedException {
 
-        int location = 1;
+        int location = 0;
         Bitmap bitmap = getBitmap();
 
         // top left = (0,0)
@@ -132,9 +132,9 @@ public class VisionCamera {
             int greenPixel1 = green(bitmap.getPixel(100, 250));
             int bluePixel1 = blue(bitmap.getPixel(100, 250));
 
-            int redPixel2 = red(bitmap.getPixel(300, 250));
-            int greenPixel2 = green(bitmap.getPixel(300, 250));
-            int bluePixel2 = blue(bitmap.getPixel(300, 250));
+            int redPixel2 = red(bitmap.getPixel(350, 250));
+            int greenPixel2 = green(bitmap.getPixel(350, 250));
+            int bluePixel2 = blue(bitmap.getPixel(350, 250));
 
             int redPixel3 = red(bitmap.getPixel(600, 250));
             int greenPixel3 = green(bitmap.getPixel(600, 250));

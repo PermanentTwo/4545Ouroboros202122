@@ -13,7 +13,7 @@ public class VisionTesting extends LinearOpMode {
         VisionCamera vision = new VisionCamera(this);
 
         waitForStart();
-        telemetry.addData("loc", vision.senseBlue(this));
+        telemetry.addData("loc", vision.senseRed(this));
         telemetry.update();
         
     }

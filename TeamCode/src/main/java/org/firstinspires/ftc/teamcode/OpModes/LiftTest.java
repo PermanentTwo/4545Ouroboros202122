@@ -12,11 +12,13 @@ public class LiftTest extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
 
         Output out = new Output(this);
+        DriveTrain dt = new DriveTrain(this);
 
         waitForStart();
 
-        out.lift.setPower(1);
-        sleep(5000);
-        out.lift.setPower(0);
+        out.liftUp(3);
+        dt.encoderMove(-.3, 3, 1);
+        out.box(true);
+
     }
 }

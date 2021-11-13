@@ -69,6 +69,8 @@ public abstract class TeleLib extends OpMode {
         intake.setDirection(DcMotorSimple.Direction.FORWARD);
         lift.setDirection(DcMotorSimple.Direction.FORWARD);
 
+        lift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        lift.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         th_arcade = new ThreadHandler();
         th_lift = new ThreadHandler();
@@ -241,10 +243,15 @@ public abstract class TeleLib extends OpMode {
     }
 
     public void carousel(){
-        if (gamepad2.x){
-            carouselLeft.setPower(-0.5);
+        if (gamepad2.left_trigger > .5){
+            carouselLeft.setPower(.5);
         }
-        carouselLeft.setPower(0);
+        else if (gamepad2.right_trigger > .5) {
+            carouselLeft.setPower(-.5);
+        }
+        else {
+            carouselLeft.setPower(0);
+        }
 
     }
 
@@ -253,7 +260,7 @@ public abstract class TeleLib extends OpMode {
         telemetry.addData("lift override on?", liftOverrideToggle);
         telemetry.addData("box servo pos", boxServo.getPosition());
         telemetry.addData("lift power", lift.getPower());
-        telemetry.addData("lift pos", lift.getCurrentPosition());
+        telemetry.addData("lift pos", -lift.getCurrentPosition());
         telemetry.addData("bl", bl.getCurrentPosition());
         telemetry.addData("br", br.getCurrentPosition());
         telemetry.addData("fl", fl.getCurrentPosition());
