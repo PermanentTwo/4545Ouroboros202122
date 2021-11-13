@@ -21,6 +21,7 @@ public class Output {
         this.opMode = opMode;
         box = opMode.hardwareMap.servo.get ("box");
         lift = opMode.hardwareMap.dcMotor.get("lift");
+        lift.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
     }
 
     //We need to move the lift up 1200 encoder counts

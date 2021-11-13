@@ -74,8 +74,8 @@ public class VisionCamera {
         // set RGB format to 565
         Vuforia.setFrameFormat(PIXEL_FORMAT.RGB565, true);
 
-        // allowing the frame to only be 3 images at a time
-        vuforia.setFrameQueueCapacity(3);
+        // allowing the frame to only be 4 images at a time
+        vuforia.setFrameQueueCapacity(1);
         opMode.telemetry.addLine("Vision init");
         opMode.telemetry.update();
     }
@@ -91,7 +91,7 @@ public class VisionCamera {
         for (int i = 0; i < numImages; i++) {
             int fmt = frame.getImage(i).getFormat();
 
-            if (fmt == PIXEL_FORMAT.RGB888) {
+            if (fmt == PIXEL_FORMAT.RGB565) {
                 rgb = frame.getImage(i);
                 break;
 
@@ -127,8 +127,6 @@ public class VisionCamera {
 
         // top left = (0,0)
 
-        while (opMode.opModeIsActive()) {
-
             // receive R, G, and B values for each pixel
             int redPixel1 = red(bitmap.getPixel(100, 250));
             int greenPixel1 = green(bitmap.getPixel(100, 250));
@@ -159,8 +157,9 @@ public class VisionCamera {
                     opMode.telemetry.addData("Green", greenPixel);
                     opMode.telemetry.addData("Blue", bluePixel);
                     opMode.telemetry.update();*/
-        }
+
         opMode.telemetry.addData("Position", location);
+        opMode.telemetry.update();
         return location;
     }
 }

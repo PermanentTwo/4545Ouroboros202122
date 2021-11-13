@@ -146,6 +146,7 @@ public abstract class TeleLib extends OpMode {
     }
 
     boolean liftOverrideToggle = false;
+    double liftHalf = 1;
     Thread no_override = new Thread(new Runnable() {
         @Override
         public void run() {
@@ -155,6 +156,8 @@ public abstract class TeleLib extends OpMode {
 
             }
             liftOverrideToggle = false;
+            liftHalf = 1;
+
         }
     });
     Thread yes_override = new Thread(new Runnable() {
@@ -166,6 +169,7 @@ public abstract class TeleLib extends OpMode {
 
             }
             liftOverrideToggle = true;
+            liftHalf = .5;
         }
     });
     Thread down_macro = new Thread(new Runnable() {
@@ -185,11 +189,12 @@ public abstract class TeleLib extends OpMode {
 
     //lift method (GP2: left joystick up and down)
     public void lift () {
-        /*if (gamepad2.left_stick_button && liftOverrideToggle) {
+        if (gamepad2.left_stick_button && liftOverrideToggle) {
             th_lift.queue(no_override);
         } else if (gamepad2.left_stick_button && !liftOverrideToggle) {
             th_lift.queue(yes_override);
         }
+        /*
         if (gamepad2.left_trigger > .5) {
             th_lift.queue(down_macro);
         }
@@ -200,11 +205,9 @@ public abstract class TeleLib extends OpMode {
             lift.setPower(gamepad2.left_stick_y);
         }
         lift.setPower(0);*/
-        if (gamepad2.left_stick_y > .5) {
-            lift.setPower(1);
-        }
-        else if (gamepad2.left_stick_y < -.5) {
-            lift.setPower(-1);
+        if (Math.abs(gamepad2.left_stick_y) > .2) {
+            lift.setPower(gamepad2.left_stick_y * liftHalf);
+
         } else {
             lift.setPower(0);
         }
@@ -232,7 +235,7 @@ public abstract class TeleLib extends OpMode {
             boxServo.setPosition(0);
         }
         else if (gamepad2.b) {
-            boxServo.setPosition(.6);
+            boxServo.setPosition(.4);
         }
     }
 

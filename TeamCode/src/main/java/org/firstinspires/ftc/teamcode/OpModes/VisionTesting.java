@@ -14,6 +14,7 @@ public class VisionTesting extends LinearOpMode {
 
         waitForStart();
         telemetry.addData("loc", vision.senseBlue(this));
+        telemetry.update();
         
     }
 }
