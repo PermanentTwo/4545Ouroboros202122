@@ -20,8 +20,8 @@ public abstract class TeleLib extends OpMode {
     //public DcMotor wheel;
     public Servo boxServo;
     //public Servo linearActuator;
-    public CRServo carouselLeft;
-    public CRServo carouselRight;
+    public DcMotor carouselLeft;
+    //public DcMotor carouselRight;
 
     public ThreadHandler th_arcade;
     public ThreadHandler th_lift;
@@ -36,8 +36,8 @@ public abstract class TeleLib extends OpMode {
         intake = hardwareMap.dcMotor.get("intake");
         lift = hardwareMap.dcMotor.get("lift");
         //wheel = hardwareMap.dcMotor.get("wheel");
-        carouselLeft = hardwareMap.crservo.get("lc");
-        carouselRight = hardwareMap.crservo.get("rc");
+        carouselLeft = hardwareMap.dcMotor.get("lc");
+        //carouselRight = hardwareMap.dcMotor.get("rc");
 
         //TODO: Sophia - Initialize the Servos' hardware maps
 
@@ -51,6 +51,7 @@ public abstract class TeleLib extends OpMode {
         fl.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         intake.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         lift.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        carouselLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         /*fl.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
@@ -241,11 +242,9 @@ public abstract class TeleLib extends OpMode {
 
     public void carousel(){
         if (gamepad2.x){
-            carouselLeft.setPower(-1);
-            carouselRight.setPower(-1);
+            carouselLeft.setPower(-0.5);
         }
         carouselLeft.setPower(0);
-        carouselRight.setPower(0);
 
     }
 
@@ -260,7 +259,7 @@ public abstract class TeleLib extends OpMode {
         telemetry.addData("fl", fl.getCurrentPosition());
         telemetry.addData("fr", fr.getCurrentPosition());
         telemetry.addData("lc power", carouselLeft.getPower());
-        telemetry.addData("rc power", carouselRight.getPower());
+        //telemetry.addData("rc power", carouselRight.getPower());
         telemetry.update();
     }
 }
