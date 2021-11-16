@@ -35,12 +35,12 @@ public class Output {
 
         }
         else if (position == 2) {
-            while (lift.getCurrentPosition() < 1000 && opMode.opModeIsActive()){
+            while (lift.getCurrentPosition() < 650 && opMode.opModeIsActive()){
               lift.setPower(0.5);
             }
         }
         else if (position == 3) {
-            while (lift.getCurrentPosition() < 1520 && opMode.opModeIsActive() && time.seconds() < 3){
+            while (lift.getCurrentPosition() < 1300 && opMode.opModeIsActive() && time.seconds() < 3){
                 lift.setPower(0.5);
                 opMode.telemetry.addData("lift current pos", lift.getCurrentPosition());
                 opMode.telemetry.update();

@@ -119,8 +119,7 @@ public class VisionCamera {
         return bm;
     }
 
-    //only using blue for now
-    public int senseRed(LinearOpMode opMode) throws InterruptedException {
+    public int senseRedCarousel(LinearOpMode opMode) throws InterruptedException {
 
         int location = 0;
         Bitmap bitmap = getBitmap();
@@ -128,17 +127,17 @@ public class VisionCamera {
         // top left = (0,0)
 
             // receive R, G, and B values for each pixel
-            int redPixel1 = red(bitmap.getPixel(100, 250));
-            int greenPixel1 = green(bitmap.getPixel(100, 250));
-            int bluePixel1 = blue(bitmap.getPixel(100, 250));
+            int redPixel1 = red(bitmap.getPixel(100, 50));
+            int greenPixel1 = green(bitmap.getPixel(100, 50));
+            int bluePixel1 = blue(bitmap.getPixel(100, 50));
 
-            int redPixel2 = red(bitmap.getPixel(350, 250));
-            int greenPixel2 = green(bitmap.getPixel(350, 250));
-            int bluePixel2 = blue(bitmap.getPixel(350, 250));
+            int redPixel2 = red(bitmap.getPixel(350, 50));
+            int greenPixel2 = green(bitmap.getPixel(350, 50));
+            int bluePixel2 = blue(bitmap.getPixel(350, 50));
 
-            int redPixel3 = red(bitmap.getPixel(600, 250));
-            int greenPixel3 = green(bitmap.getPixel(600, 250));
-            int bluePixel3 = blue(bitmap.getPixel(600, 250));
+            int redPixel3 = red(bitmap.getPixel(600, 50));
+            int greenPixel3 = green(bitmap.getPixel(600, 50));
+            int bluePixel3 = blue(bitmap.getPixel(600, 50));
             // if (bitmap.getColor(100,250) == bitmap.)
 
             if (redPixel1 < 30 && greenPixel1 < 30 && bluePixel1 < 30) {
@@ -148,6 +147,132 @@ public class VisionCamera {
             } else if (redPixel3 < 30 && greenPixel3 < 30 && bluePixel3 < 30) {
                 location = 3;
             }
+                    /*opMode.telemetry.addData("Red", redPixel);
+                    opMode.telemetry.addData("Green", greenPixel);
+                    opMode.telemetry.addData("Blue", bluePixel);
+                    opMode.telemetry.update();*/
+
+                    /*opMode.telemetry.addData("Red", redPixel);
+                    opMode.telemetry.addData("Green", greenPixel);
+                    opMode.telemetry.addData("Blue", bluePixel);
+                    opMode.telemetry.update();*/
+
+        opMode.telemetry.addData("Position", location);
+        opMode.telemetry.update();
+        return location;
+    }
+    public int senseRedWarehouse(LinearOpMode opMode) throws InterruptedException {
+
+        int location = 0;
+        Bitmap bitmap = getBitmap();
+
+        // top left = (0,0)
+
+        // receive R, G, and B values for each pixel
+        int redPixel1 = red(bitmap.getPixel(125, 50));
+        int greenPixel1 = green(bitmap.getPixel(125, 50));
+        int bluePixel1 = blue(bitmap.getPixel(125, 50));
+
+        int redPixel2 = red(bitmap.getPixel(350, 50));
+        int greenPixel2 = green(bitmap.getPixel(350, 50));
+        int bluePixel2 = blue(bitmap.getPixel(350, 50));
+
+        int redPixel3 = red(bitmap.getPixel(580, 50));
+        int greenPixel3 = green(bitmap.getPixel(580, 50));
+        int bluePixel3 = blue(bitmap.getPixel(580, 50));
+        // if (bitmap.getColor(100,250) == bitmap.)
+
+        if (redPixel1 < 30 && greenPixel1 < 30 && bluePixel1 < 30) {
+            location = 1;
+        } else if (redPixel2 < 30 && greenPixel2 < 30 && bluePixel2 < 30) {
+            location = 2;
+        } else if (redPixel3 < 30 && greenPixel3 < 30 && bluePixel3 < 30) {
+            location = 3;
+        }
+                    /*opMode.telemetry.addData("Red", redPixel);
+                    opMode.telemetry.addData("Green", greenPixel);
+                    opMode.telemetry.addData("Blue", bluePixel);
+                    opMode.telemetry.update();*/
+
+                    /*opMode.telemetry.addData("Red", redPixel);
+                    opMode.telemetry.addData("Green", greenPixel);
+                    opMode.telemetry.addData("Blue", bluePixel);
+                    opMode.telemetry.update();*/
+
+        opMode.telemetry.addData("Position", location);
+        opMode.telemetry.update();
+        return location;
+    }
+    public int senseBlueCarousel(LinearOpMode opMode) throws InterruptedException {
+
+        int location = 0;
+        Bitmap bitmap = getBitmap();
+
+        // top left = (0,0)
+
+        // receive R, G, and B values for each pixel
+        int redPixel1 = red(bitmap.getPixel(150, 50));
+        int greenPixel1 = green(bitmap.getPixel(150, 50));
+        int bluePixel1 = blue(bitmap.getPixel(150, 50));
+
+        int redPixel2 = red(bitmap.getPixel(400, 50));
+        int greenPixel2 = green(bitmap.getPixel(400, 50));
+        int bluePixel2 = blue(bitmap.getPixel(400, 50));
+
+        int redPixel3 = red(bitmap.getPixel(639, 50));
+        int greenPixel3 = green(bitmap.getPixel(639, 50));
+        int bluePixel3 = blue(bitmap.getPixel(639, 50));
+        // if (bitmap.getColor(100,250) == bitmap.)
+
+        if (redPixel1 < 30 && greenPixel1 < 30 && bluePixel1 < 30) {
+            location = 1;
+        } else if (redPixel2 < 30 && greenPixel2 < 30 && bluePixel2 < 30) {
+            location = 2;
+        } else if (redPixel3 < 30 && greenPixel3 < 30 && bluePixel3 < 30) {
+            location = 3;
+        }
+                    /*opMode.telemetry.addData("Red", redPixel);
+                    opMode.telemetry.addData("Green", greenPixel);
+                    opMode.telemetry.addData("Blue", bluePixel);
+                    opMode.telemetry.update();*/
+
+                    /*opMode.telemetry.addData("Red", redPixel);
+                    opMode.telemetry.addData("Green", greenPixel);
+                    opMode.telemetry.addData("Blue", bluePixel);
+                    opMode.telemetry.update();*/
+
+        opMode.telemetry.addData("Position", location);
+        opMode.telemetry.update();
+        return location;
+    }
+    public int senseBlueWarehouse(LinearOpMode opMode) throws InterruptedException {
+
+        int location = 0;
+        Bitmap bitmap = getBitmap();
+
+        // top left = (0,0)
+
+        // receive R, G, and B values for each pixel
+        int redPixel1 = red(bitmap.getPixel(10, 50));
+        int greenPixel1 = green(bitmap.getPixel(10, 50));
+        int bluePixel1 = blue(bitmap.getPixel(10, 50));
+
+        int redPixel2 = red(bitmap.getPixel(200, 50));
+        int greenPixel2 = green(bitmap.getPixel(200, 50));
+        int bluePixel2 = blue(bitmap.getPixel(200, 50));
+
+        int redPixel3 = red(bitmap.getPixel(450, 50));
+        int greenPixel3 = green(bitmap.getPixel(450, 50));
+        int bluePixel3 = blue(bitmap.getPixel(450, 50));
+        // if (bitmap.getColor(100,250) == bitmap.)
+
+        if (redPixel3 < 30 && greenPixel3 < 30 && bluePixel3 < 30) {
+            location = 3;
+        } else if (redPixel2 < 30 && greenPixel2 < 30 && bluePixel2 < 30) {
+            location = 2;
+        } else if (redPixel1 < 30 && greenPixel1 < 30 && bluePixel1 < 30) {
+            location = 1;
+        }
                     /*opMode.telemetry.addData("Red", redPixel);
                     opMode.telemetry.addData("Green", greenPixel);
                     opMode.telemetry.addData("Blue", bluePixel);

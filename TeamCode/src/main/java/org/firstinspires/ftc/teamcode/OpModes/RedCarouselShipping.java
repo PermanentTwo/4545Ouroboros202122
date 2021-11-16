@@ -20,7 +20,7 @@ public class RedCarouselShipping extends LinearOpMode {
         VisionCamera vision = new VisionCamera(this);
 
         waitForStart();
-        switch (vision.senseRed(this)) {
+        switch (vision.senseRedCarousel(this)) {
             case 1:
                 dt.encoderMove(.5, 5, 2);
                 dt.turnPID(135, false, .7/135, .01, .02/135, 2);

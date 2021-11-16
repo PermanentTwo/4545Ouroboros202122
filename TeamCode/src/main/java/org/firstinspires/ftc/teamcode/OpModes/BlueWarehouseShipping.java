@@ -22,7 +22,7 @@ public class BlueWarehouseShipping extends LinearOpMode {
 
         waitForStart();
 
-        int pos = vision.senseRed(this);
+        int pos = vision.senseRedCarousel(this);
         switch (pos) {
             case 1:
                 dt.encoderMove(.5, 5, 2);

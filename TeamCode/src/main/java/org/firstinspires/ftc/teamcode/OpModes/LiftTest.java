@@ -16,7 +16,7 @@ public class LiftTest extends LinearOpMode {
 
         waitForStart();
 
-        out.liftUp(3);
+        out.liftUp(2);
         dt.encoderMove(-.3, 3, 1);
         out.box(true);
 
