@@ -48,18 +48,20 @@ public class RedCarouselShipping extends LinearOpMode {
                 dt.encoderMove(-1, 100, 4);
             case 3:
                 dt.encoderMove(.5, 5, 2);
-                dt.turnPID(135, false, .7/135, .01, .02/135, 2);
-                dt.encoderMove(-.5, 17, 3);
+                dt.turnPID(90, true, .7/135, .01, .02/135, 2);
+                dt.encoderMove(.5, 10, 3);
+                dt.turnPID(90, true, .7/135, .01, .02/135, 2);
                 out.liftUp(3);
+                dt.encoderMove(-.5, 10, 2);
                 out.box(true);
                 sleep(500);
                 out.box(false);
                 out.liftDown();
                 sleep(500);
-                dt.encoderMove(.3, 5, 2);
+                /*dt.encoderMove(.3, 5, 2);
                 out.liftDown();
-                dt.turnPID(45, true, .7/45, .01, .02/45, 2);
-                dt.encoderMove(-1, 100, 4);
+                dt.turnPID(90, true, .7/45, .01, .02/45, 2);
+                dt.encoderMove(.5, 100, 4);*/
         }
     }
 }
