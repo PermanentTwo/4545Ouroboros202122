@@ -10,7 +10,7 @@ import org.firstinspires.ftc.teamcode.HardwareClasses.Output;
 import org.firstinspires.ftc.teamcode.HardwareClasses.Sensors;
 import org.firstinspires.ftc.teamcode.HardwareClasses.VisionCamera;
 
-@Autonomous(group = "Autonomous", name = "Blue Carousel Park")
+@Autonomous(group = "Blue", name = "Blue Carousel Park")
 public class BlueCarouselPark extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {

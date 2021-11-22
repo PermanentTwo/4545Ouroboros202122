@@ -132,12 +132,12 @@ public class DriveTrain {
 
         double initAngle = sensors.getGyroYaw();
 
-        double lastError = angleChange - 2 - Math.abs(sensors.getGyroYaw() - initAngle);
+        double lastError = Math.abs(angleChange) - 2 - Math.abs(sensors.getGyroYaw() - initAngle);
 
         time.reset();
         timeoutTimer.reset();
 
-        double control = .4;
+        double control = .7;
 
         while (Math.abs(sensors.getGyroYaw() - (angleChange + initAngle)) > .1 && timeoutTimer.seconds() < timeout && opMode.opModeIsActive()) {
             prevRunTime = time.seconds();
@@ -169,6 +169,7 @@ public class DriveTrain {
             turn(power, turnRight);
 
             opMode.telemetry.addData("error ", error);
+            opMode.telemetry.addData("current heading ", sensors.getGyroYaw());
             opMode.telemetry.addData("P", proportional);
             opMode.telemetry.addData("I", integral);
             opMode.telemetry.addData("D", derivative);
@@ -176,7 +177,7 @@ public class DriveTrain {
             opMode.telemetry.update();
 
             lastError = error;
-            if (sensors.getGyroYaw() < 360 && sensors.getGyroYaw() > 180)
+            if (sensors.getGyroYaw() < 360 && sensors.getGyroYaw() > 350)
             {
                 initAngle = 360;
             }

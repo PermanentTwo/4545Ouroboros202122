@@ -7,10 +7,11 @@ import org.firstinspires.ftc.teamcode.HardwareClasses.DriveTrain;
 import org.firstinspires.ftc.teamcode.HardwareClasses.Output;
 import org.firstinspires.ftc.teamcode.HardwareClasses.VisionCamera;
 
-@Autonomous(group = "Autonomous", name = "Blue Carousel Shipping")
+@Autonomous(group = "Blue", name = "Blue Carousel Shipping")
 public class BlueCarouselShipping extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
+        //ALLIGN - OUTSIDE EDGE CLOSEST TO CAROUSEL
         //Carousel carousel = new Carousel(this);
         DriveTrain dt = new DriveTrain(this);
         //Intake intake = new Intake(this);

@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.HardwareClasses.DriveTrain;
 
-@Autonomous(group = "Autonomous", name = "EncoderMoveTest")
+@Autonomous(group = "Testing", name = "EncoderMoveTest")
 public class EncoderMoveTest extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {

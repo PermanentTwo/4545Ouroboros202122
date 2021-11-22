@@ -7,7 +7,7 @@ import org.firstinspires.ftc.teamcode.HardwareClasses.DriveTrain;
 import org.firstinspires.ftc.teamcode.HardwareClasses.Output;
 import org.firstinspires.ftc.teamcode.HardwareClasses.VisionCamera;
 
-@Autonomous(group = "Autonomous", name = "Red Warehouse Shipping")
+@Autonomous(group = "Red", name = "Red Warehouse Shipping")
 public class RedWarehouseShipping extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
