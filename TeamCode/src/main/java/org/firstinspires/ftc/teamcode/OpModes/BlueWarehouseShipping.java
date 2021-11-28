@@ -22,52 +22,62 @@ public class BlueWarehouseShipping extends LinearOpMode {
 
         waitForStart();
 
-        int pos = vision.senseRedCarousel(this);
+        int pos = vision.senseBlueWarehouse(this);
         switch (pos) {
             case 1:
-                dt.encoderMove(.5, 5, 2);
-                dt.turnPID(135, false, .7/135, .01, .02/135, 2);
-                dt.encoderMove(-.5, 19, 3);
+                dt.encoderMove(.5, 7, 2);
+                dt.turnPID(90, true, .7/90, .025, .02/90, 2);
+                dt.encoderMove(.6, 12, 3);
+                dt.turnPID(90, true, .7/90, .025, .02/90, 2);
+                dt.encoderMove(-.5, 12, 2);
+
                 out.box(true);
                 sleep(500);
                 out.box(false);
+                dt.encoderMove(.5, 5, 2);
                 sleep(500);
-                dt.encoderMove(-.5, 5, 2);
-                dt.turnPID(45, true, .7/45, .01, .02/45, 2);
-                dt.encoderMove(1, 50, 4);
+                dt.turnPID(90, true, .7/90, .025, .02/90, 2);
+                dt.encoderMove(1, 60, 2);
+
+                break;
 
             case 2:
 
-                dt.encoderMove(.5, 5, 2);
-                dt.turnPID(135, false, .7/135, .01, .02/135, 2);
-                dt.encoderMove(-.5, 17, 3);
+                dt.encoderMove(.5, 7, 2);
+                dt.turnPID(90, true, .7/90, .025, .02/90, 2);
+                dt.encoderMove(.6, 14, 3);
+                dt.turnPID(90, true, .7/90, .025, .02/90, 2);
+                dt.encoderMove(-.5, 9, 2);
                 out.liftUp(2);
-                dt.encoderMove(-.3, 3, 2);
+                dt.encoderMove(-.5, 2.5, 2);
                 out.box(true);
                 sleep(500);
                 out.box(false);
-                sleep(500);
-                dt.encoderMove(.3, 5, 2);
-                out.liftDown();
-                dt.turnPID(45, true, .7/45, .01, .02/45, 2);
-                dt.encoderMove(1, 50, 4);
-
-            case 3:
                 dt.encoderMove(.5, 5, 2);
-                dt.turnPID(135, false, .7/135, .01, .02/135, 2);
-                dt.encoderMove(-.5, 17, 3);
+                out.liftDown();
+                sleep(500);
+                dt.turnPID(93, true, .7/90, .025, .02/90, 2);
+                dt.encoderMove(1, 60, 2);
+                break;
+            case 3:
+                dt.encoderMove(.5, 7, 2);
+                dt.turnPID(90, true, .7/90, .025, .02/90, 2);
+                dt.encoderMove(.6, 14, 3);
+                dt.turnPID(90, true, .7/90, .025, .02/90, 2);
+                dt.encoderMove(-.5, 9, 2);
                 out.liftUp(3);
-                dt.encoderMove(-.3, 3, 2);
+                dt.encoderMove(-.5, 2.5, 2);
                 out.box(true);
                 sleep(500);
                 out.box(false);
+                dt.encoderMove(.5, 5, 2);
                 out.liftDown();
                 sleep(500);
-                dt.encoderMove(-.3, 5, 2);
-                out.liftDown();
-                dt.turnPID(45, true, .7/45, .01, .02/45, 2);
-                dt.encoderMove(1, 50, 4);
+                dt.turnPID(93, true, .7/90, .025, .02/90, 2);
+                dt.encoderMove(1, 60, 2);
 
+
+                break;
         }
     }
 }

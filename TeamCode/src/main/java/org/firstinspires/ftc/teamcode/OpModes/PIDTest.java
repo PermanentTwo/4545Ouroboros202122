@@ -15,10 +15,7 @@ public class PIDTest extends LinearOpMode {
 
         waitForStart();
 
-        dt.turnPID(90, true, .7/90, .02, .02/90, 3);
-        sleep(500);
-        dt.turnPID(90, true, .7/90, .02, .02/90, 3);
-
+        dt.turnPID(140, true, .7/144, .015, .02/144, 2);
         /*while (opModeIsActive()) {
             telemetry.addData("angle", dt.sensors.getGyroYaw());
             telemetry.update();

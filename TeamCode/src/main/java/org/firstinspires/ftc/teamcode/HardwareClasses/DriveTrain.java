@@ -108,7 +108,7 @@ public class DriveTrain {
             br.setPower(-power);
             fl.setPower(power);
             bl.setPower(power);
-        } else if (!isRight){
+        } else {
             fr.setPower(power);
             br.setPower(power);
             fl.setPower(-power);
@@ -139,12 +139,15 @@ public class DriveTrain {
 
         double control = .7;
 
-        while (Math.abs(sensors.getGyroYaw() - (angleChange + initAngle)) > .1 && timeoutTimer.seconds() < timeout && opMode.opModeIsActive()) {
+        while (Math.abs(lastError) > 2 && timeoutTimer.seconds() < timeout && opMode.opModeIsActive()) {
             prevRunTime = time.seconds();
 
 
-
-            error = angleChange - Math.abs(sensors.getGyroYaw() - initAngle);
+            if (turnRight) {
+                error = angleChange - Math.abs(sensors.getGyroYaw() - initAngle);
+            } else {
+                error = -(angleChange - Math.abs(sensors.getGyroYaw() - initAngle));
+            }
 
 
 
@@ -156,10 +159,10 @@ public class DriveTrain {
             derivative = ((error - lastError) / (time.seconds() - prevRunTime)) * kD;
 
 
-            power = (proportional + integral + derivative)*control;
+            power = (proportional + integral + derivative);
 
             if (power < .3 && kI == 0 && kD == 0) {
-                power = .25;
+                power = .3;
             }
 
             if(control < 1){

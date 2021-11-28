@@ -25,9 +25,9 @@ public class RedCarouselShipping extends LinearOpMode {
         switch (vision.senseRedCarousel(this)) {
             case 1:
                 dt.encoderMove(.5, 7, 2);
-                dt.turnPID(90, true, .7/90, .02, .02/90, 2);
+                dt.turnPID(90, true, .7/90, .025, .02/90, 2);
                 dt.encoderMove(.6, 17.5, 3);
-                dt.turnPID(90, true, .7/90, .02, .02/90, 2);
+                dt.turnPID(90, true, .7/90, .025, .02/90, 2);
                 dt.encoderMove(-.5, 12, 2);
 
                 out.box(true);
@@ -35,21 +35,21 @@ public class RedCarouselShipping extends LinearOpMode {
                 out.box(false);
                 dt.encoderMove(.5, 10, 2);
                 sleep(500);
-                dt.turnPID(90, true, .7/90, .02, .02/90, 2);
+                dt.turnPID(90, true, .7/90, .025, .02/90, 2);
                 dt.encoderMove(.6, 22, 3);
-                dt.encoderMove(.25, 10, 3);
+                dt.encoderMove(.25, 12, 3);
                 carousel.carouselLeftRightDoubleTrouble(4.5, false);
                 dt.encoderMove(-.5, 5, 2);
-                dt.turnPID(60, true, .7/60, .02, .02/60, 2);
+                dt.turnPID(60, true, .7/60, .025, .02/60, 2);
                 dt.encoderMove(.5, 12, 2);
                 break;
 
             case 2:
                 dt.encoderMove(.5, 7, 2);
-                dt.turnPID(90, true, .7/90, .02, .02/90, 2);
+                dt.turnPID(90, true, .7/90, .025, .02/90, 2);
                 dt.encoderMove(.6, 17.5, 3);
-                dt.turnPID(90, true, .7/90, .02, .02/90, 2);
-                dt.encoderMove(-.5, 13, 2);
+                dt.turnPID(90, true, .7/90, .025, .02/90, 2);
+                dt.encoderMove(-.5, 12.5, 2);
                 out.liftUp(2);
                 dt.encoderMove(-.5, 2.5, 2);
                 out.box(true);
@@ -58,22 +58,22 @@ public class RedCarouselShipping extends LinearOpMode {
                 dt.encoderMove(.5, 14.5, 2);
                 out.liftDown();
                 sleep(500);
-                dt.turnPID(90, true, .7/90, .02, .02/90, 2);
+                dt.turnPID(90, true, .7/90, .025, .02/90, 2);
                 dt.encoderMove(.6, 26, 3);
                 dt.encoderMove(.25, 6, 3);
                 carousel.carouselLeftRightDoubleTrouble(4.5, false);
                 dt.encoderMove(-.5, 5, 2);
-                dt.turnPID(60, true, .7/60, .02, .02/60, 2);
+                dt.turnPID(60, true, .7/60, .025, .02/60, 2);
                 dt.encoderMove(.5, 12, 2);
                 break;
 
 
             case 3:
                 dt.encoderMove(.5, 7, 2);
-                dt.turnPID(90, true, .7/90, .02, .02/90, 2);
+                dt.turnPID(90, true, .7/90, .025, .02/90, 2);
                 dt.encoderMove(.6, 17.5, 3);
-                dt.turnPID(90, true, .7/90, .02, .02/90, 2);
-                dt.encoderMove(-.5, 14, 2);
+                dt.turnPID(90, true, .7/90, .025, .02/90, 2);
+                dt.encoderMove(-.5, 13, 2);
                 out.liftUp(3);
                 dt.encoderMove(-.5, 2.5, 2);
                 out.box(true);
@@ -82,12 +82,12 @@ public class RedCarouselShipping extends LinearOpMode {
                 dt.encoderMove(.5, 14.5, 2);
                 out.liftDown();
                 sleep(500);
-                dt.turnPID(90, true, .7/90, .02, .02/90, 2);
+                dt.turnPID(90, true, .7/90, .025, .02/90, 2);
                 dt.encoderMove(.6, 26, 3);
                 dt.encoderMove(.25, 6, 3);
                 carousel.carouselLeftRightDoubleTrouble(4.5, false);
                 dt.encoderMove(-.5, 5, 2);
-                dt.turnPID(60, true, .7/60, .02, .02/60, 2);
+                dt.turnPID(60, true, .7/60, .025, .02/60, 2);
                 dt.encoderMove(.5, 12, 2);
                 break;
                 /*

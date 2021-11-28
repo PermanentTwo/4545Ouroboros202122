@@ -253,9 +253,9 @@ public class VisionCamera {
         // top left = (0,0)
 
         // receive R, G, and B values for each pixel
-        int redPixel1 = red(bitmap.getPixel(10, 50));
-        int greenPixel1 = green(bitmap.getPixel(10, 50));
-        int bluePixel1 = blue(bitmap.getPixel(10, 50));
+        int redPixel1 = red(bitmap.getPixel(1, 50));
+        int greenPixel1 = green(bitmap.getPixel(1, 50));
+        int bluePixel1 = blue(bitmap.getPixel(1, 50));
 
         int redPixel2 = red(bitmap.getPixel(200, 50));
         int greenPixel2 = green(bitmap.getPixel(200, 50));
