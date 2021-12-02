@@ -69,7 +69,7 @@ public abstract class TeleLib extends OpMode {
         bl.setDirection(DcMotorSimple.Direction.REVERSE);
         fl.setDirection(DcMotorSimple.Direction.REVERSE);
         intake.setDirection(DcMotorSimple.Direction.FORWARD);
-        lift.setDirection(DcMotorSimple.Direction.FORWARD);
+        lift.setDirection(DcMotorSimple.Direction.REVERSE);
 
         lift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         lift.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -246,12 +246,12 @@ public abstract class TeleLib extends OpMode {
 
     public void carousel(){
         if (gamepad2.left_trigger > .5){
-            carouselRight.setPower(.5);
-            carouselLeft.setPower(.5);
+            carouselRight.setPower(.65);
+            carouselLeft.setPower(.65);
         }
         else if (gamepad2.right_trigger > .5) {
-            carouselLeft.setPower(-.5);
-            carouselRight.setPower(-.5);
+            carouselLeft.setPower(-.65);
+            carouselRight.setPower(-.65);
 
         }
         else {

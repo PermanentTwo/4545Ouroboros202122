@@ -33,11 +33,11 @@ public class BlueCarouselShipping extends LinearOpMode {
                 out.box(false);
                 dt.encoderMove(.5, 5 , 2);
 
-                dt.turnPID(75, false, .8/75, 0, 0, 2);
-                dt.encoderMove(.5, 31, 3);
-                dt.encoderMove(.25, 12, 3);
+                dt.turnPID(77, false, .8/80, 0, 0, 2);
+                dt.encoderMove(.5, 28, 3);
+                dt.encoderMove(.25, 10, 3);
                 carousel.carouselLeftRightDoubleTrouble(5, true);
-                dt.turnPID(95, false, .6/95, 0, 0, 2);
+                dt.turnPID(105, false, .9/105, 0, 0, 2);
                 dt.encoderMove(.5, 8.25, 3);
 
                 // dt.turnPID(45, false, .7/45, .01, .02/45, 2);
@@ -48,7 +48,7 @@ public class BlueCarouselShipping extends LinearOpMode {
                 dt.turnPID(148, true, .7/148, .012, .02/148, 2);
                 dt.encoderMove(-.5, 17, 3);
                 out.liftUp(2);
-                dt.encoderMove(-.3, 3, 2);
+                dt.encoderMove(-.3, 2, 2);
                 out.box(true);
                 sleep(500);
                 out.box(false);
@@ -57,10 +57,10 @@ public class BlueCarouselShipping extends LinearOpMode {
                 dt.encoderMove(.5, 5 , 2);
 
                 dt.turnPID(36.5, false, .8/40, 0, 0, 2);
-                dt.encoderMove(.5, 16, 3);
-                dt.encoderMove(.25, 10, 3);
+                dt.encoderMove(.5, 15.5, 3);
+                dt.encoderMove(.25, 11, 3);
                 carousel.carouselLeftRightDoubleTrouble(5, true);
-                dt.turnPID(87, false, .6/90, 0, 0, 2);
+                dt.turnPID(95, false, .75/90, 0, 0, 2);
                 dt.encoderMove(.5, 8, 3);
                 /*
                 dt.turnPID(45, false, .7/45, .01, .02/45, 2);
@@ -71,7 +71,7 @@ public class BlueCarouselShipping extends LinearOpMode {
                 dt.turnPID(148, true, .7/148, .012, .02/148, 2);
                 dt.encoderMove(-.5, 17, 3);
                 out.liftUp(3);
-                dt.encoderMove(-.3, 3, 2);
+                dt.encoderMove(-.3, 2, 2);
                 out.box(true);
                 sleep(500);
                 out.box(false);
@@ -81,9 +81,9 @@ public class BlueCarouselShipping extends LinearOpMode {
 
                 dt.turnPID(37, false, .8/40, 0, 0, 2);
                 dt.encoderMove(.5, 15.5, 3);
-                dt.encoderMove(.25, 10, 3);
+                dt.encoderMove(.25, 11, 3);
                 carousel.carouselLeftRightDoubleTrouble(5, true);
-                dt.turnPID(87, false, .6/90, 0, 0, 2);
+                dt.turnPID(95, false, .75/90, 0, 0, 2);
                 dt.encoderMove(.5, 8, 3);
                 break;
 

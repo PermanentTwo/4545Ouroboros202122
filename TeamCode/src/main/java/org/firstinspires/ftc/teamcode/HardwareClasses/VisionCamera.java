@@ -121,7 +121,7 @@ public class VisionCamera {
 
     public int senseRedCarousel(LinearOpMode opMode) throws InterruptedException {
 
-        int location = 0;
+        int location = 3;
         Bitmap bitmap = getBitmap();
 
         // top left = (0,0)
@@ -205,7 +205,7 @@ public class VisionCamera {
     }
     public int senseBlueCarousel(LinearOpMode opMode) throws InterruptedException {
 
-        int location = 0;
+        int location = 1;
         Bitmap bitmap = getBitmap();
 
         // top left = (0,0)
